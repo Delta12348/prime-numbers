@@ -1,6 +1,6 @@
 from bitarray import bitarray 
 #4294967296, this is the number to beat 
-prime_numbers = bitarray(100) #Creates an array of bits of the specified length
+prime_numbers = bitarray(10000000) #Creates an array of bits of the specified length
 
 prime_numbers.setall(True) #Sets all the bits in the array true
 array_length = len(prime_numbers) #Takes the length of that array, naturally the specified number 
@@ -15,8 +15,11 @@ while factor < array_length: #While the factor to test is less than the length o
             if prime_numbers[index - 2] == True: # If the bit in which the index is currently at is considered as a prime number
                 prime_numbers[index - 2] = False #Make that bit a non-prime number 
     factor += 2 #Since we already know that no multiple of two can be a prime number with simply skip to the next number e.g. 3 + 2 = 5 (Next factor to test)
-    if prime_numbers[factor - 2] == False: #If after the addition the factor is still being recognized as a non-prime number 
-        factor += 2 #add an extra two numbers, nevertheless, this solution may be inefficient  e.g. 31 + 2 = 33 it is non-prime skips two 33 + 2 = 35 it is non-prime but still tests it 
+    if prime_numbers[factor -2] == False: #Test if the new factor is a possible prime
+        while prime_numbers[factor-2] == False:  #If not, keep adding until you find a new prime
+            factor += 2 
+            if factor > array_length: #To avoid range error, break the loop if the factor is bigger than the length of the array
+                break
 
 numbers = [2] #We already know that two is a prime number so we add it to the list 
 index = 3 #For the same reason we start testing the bits from number three
