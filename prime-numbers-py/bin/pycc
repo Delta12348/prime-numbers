@@ -1,0 +1,3 @@
+#!/home/manusandoval05/Escritorio/prime-numbers/prime-numbers-py/bin/python
+from numba.pycc import main
+main()
