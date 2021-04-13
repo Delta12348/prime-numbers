@@ -1,7 +1,8 @@
 import numpy as np
 from numba import njit, vectorize
 
-prime_numbers = np.ones(1000000)
+digits = int(input("Number to calculate: "))
+prime_numbers = np.ones(digits)
 array_length = len(prime_numbers)
 factor = 2
 
