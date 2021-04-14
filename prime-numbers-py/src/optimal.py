@@ -2,14 +2,13 @@ import numpy as np
 from numba import njit
 
 digits = int(input("Number to calculate: "))
-threads = int(input("Number of threads in system: "))
 prime_numbers_array = np.ones(digits)
 array_length = len(prime_numbers_array)
 factor = 3
 
 print(prime_numbers_array)
 
-@njit 
+@njit(parallel=True)
 def calculate_prime_numbers(factor, array):
   while factor < array_length:
     print(factor)
